@@ -1,6 +1,26 @@
 document.addEventListener('DOMContentLoaded',function(){
+  const header = document.querySelector('.site-header');
   const navToggle=document.getElementById('nav-toggle');
   const siteNav=document.getElementById('site-nav');
+
+  if(header){
+    let lastScrollY = window.scrollY;
+    const updateHeaderVisibility = () => {
+      const currentScrollY = window.scrollY;
+      if (currentScrollY > lastScrollY && currentScrollY > 80) {
+        header.classList.add('hidden');
+        header.classList.remove('visible');
+      } else {
+        header.classList.remove('hidden');
+        header.classList.add('visible');
+      }
+      lastScrollY = currentScrollY;
+    };
+
+    updateHeaderVisibility();
+    window.addEventListener('scroll', updateHeaderVisibility, { passive: true });
+  }
+
   if(navToggle&&siteNav){
     const updateToggleState = () => {
       const expanded = navToggle.getAttribute('aria-expanded') === 'true';

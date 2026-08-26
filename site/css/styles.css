@@ -5,7 +5,9 @@ body{font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',Ari
 img{max-width:100%;display:block}
 a{color:inherit}
 .container{width:min(var(--max-width),calc(100% - (var(--container-padding) * 2)));margin:0 auto;padding:0 var(--container-padding)}
-.site-header{position:relative;background:#fff;border-bottom:1px solid #e6eaf0}
+.site-header{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid #e6eaf0;transition:transform .25s ease, box-shadow .25s ease}
+.site-header.hidden{transform:translateY(-110%)}
+.site-header.visible{box-shadow:0 8px 24px rgba(15,23,42,0.08)}
 .site-header .container{display:flex;align-items:center;justify-content:space-between;gap:1rem;min-height:72px}
 .brand{display:flex;align-items:center;gap:.6rem;text-decoration:none;color:inherit;font-weight:700;min-width:0}
 .brand span{line-height:1.2}
@@ -60,8 +62,9 @@ textarea{min-height:150px;resize:vertical}
 .about-hero-inner{position:relative;z-index:2;text-align:center}
 .about-hero-inner h1{font-size:clamp(2rem,4vw,2.8rem);margin:0 0 .5rem}
 .about-main{padding:2rem 0}
-.founder{display:flex;gap:1.25rem;align-items:center;margin-bottom:1.5rem}
-.founder-photo img{width:200px;height:200px;object-fit:cover;border-radius:50%;box-shadow:0 8px 20px rgba(15,23,42,0.12)}
+.founder{display:flex;gap:1.25rem;align-items:center;margin:1.5rem 0 1.5rem}
+.founder-photo{display:flex;justify-content:center;align-items:center;min-width:200px;margin-top:1rem}
+.founder-photo img{width:200px;height:200px;object-fit:cover;border-radius:50%;box-shadow:0 8px 20px rgba(15,23,42,0.12);display:block}
 .founder-bio h2{margin-top:0}
 @media (max-width:980px){
   .site-header .container{flex-wrap:wrap;padding-top:.75rem;padding-bottom:.75rem}
@@ -89,7 +92,8 @@ textarea{min-height:150px;resize:vertical}
   .footer-bottom{flex-direction:column;align-items:flex-start}
   .newsletter-form{display:grid;grid-template-columns:1fr}
   .newsletter-form .btn{width:100%}
-  .founder{flex-direction:column;align-items:flex-start}
+  .founder{flex-direction:column;align-items:center;text-align:center}
+  .founder-photo{width:100%;justify-content:center}
   .founder-photo img{width:140px;height:140px}
 }
 @media (max-width:480px){
