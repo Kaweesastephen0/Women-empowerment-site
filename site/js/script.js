@@ -2,16 +2,24 @@ document.addEventListener('DOMContentLoaded',function(){
   const navToggle=document.getElementById('nav-toggle');
   const siteNav=document.getElementById('site-nav');
   if(navToggle&&siteNav){
+    const updateToggleState = () => {
+      const expanded = navToggle.getAttribute('aria-expanded') === 'true';
+      navToggle.textContent = expanded ? '✕' : '☰';
+    };
+
     navToggle.addEventListener('click',()=>{
       const expanded = navToggle.getAttribute('aria-expanded') === 'true';
       navToggle.setAttribute('aria-expanded', String(!expanded));
       siteNav.classList.toggle('open');
+      updateToggleState();
     });
     // close nav when a link is clicked (mobile)
     siteNav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
       siteNav.classList.remove('open');
       navToggle.setAttribute('aria-expanded','false');
+      updateToggleState();
     }));
+    updateToggleState();
   }
 
   const form=document.getElementById('contact-form');
